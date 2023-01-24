@@ -1,1 +1,1 @@
-# smu-smr
+# Smu-Smr Simulator
