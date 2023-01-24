@@ -9,6 +9,7 @@ st.set_page_config(
 st.markdown("""<style>html{direction:rtl;} .math{direction:ltr;}</style>""", unsafe_allow_html=True)
 
 st.title('محاكاة للسجل الإجتماعي الموحد بالوسط الحضري')
+st.markdown('---')
 
 kmu = 9.825
 current_sum = 0
@@ -17,9 +18,9 @@ options = list()
 for m in utils.make_smu_metrics():
     v = 0
     if m.kind == 'checkbox':
-        v = st.checkbox(label=m.label, key=m._id)
+        v = st.checkbox(label=f'''{m.label} **(C = {m.score})** ''', key=m._id)
     elif m.kind == 'text-input':
-        v = st.number_input(label=m.label, key=m._id, step=1, min_value=0)
+        v = st.number_input(label=f'''{m.label} **(C = {m.score})** ''', key=m._id, min_value=0.00)
     elif m.kind == 'select-input':
         options.append(m)
     
@@ -29,14 +30,16 @@ for m in utils.make_smu_metrics():
 selected = st.selectbox(
     'الجهة',
     options=options,
-    format_func= lambda o: o.label
+    format_func= lambda o: f'''{m.label} (C = {m.score}) '''
 )
 
 if selected:
+    st.markdown('---')
+
     st.latex(
         r'''
         S_{mu} = \sum_{i=1}^{35} C_i * V_i + K_{zg} + K_{mu} =
-        ''' + rf''' {current_sum + kmu + selected.score}  '''
+        ''' + rf''' {current_sum + kmu + selected.score:.7f}  '''
     )
 
     st.latex(r'''K_{zg} =''' + rf'''{selected.score} \; (المقدار \; الثابت \; الخاص \; بكل \;  جهة).''')
