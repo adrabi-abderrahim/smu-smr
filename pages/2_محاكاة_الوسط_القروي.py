@@ -29,7 +29,7 @@ for m in utils.make_smr_metrics():
 selected = st.selectbox(
     'الجهة',
     options=options,
-    format_func= lambda o: f'''{m.label} (C = {m.score}) '''
+    format_func= lambda o: f'''{o.label} (C = {o.score}) '''
 )
 
 if selected:
