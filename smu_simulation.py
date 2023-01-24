@@ -29,7 +29,7 @@ selected = st.selectbox(
 if selected:
     st.latex(
         r'''
-        S_{MU} = \sum_{i=1}^{35} C_i * V_i + K_{zg} + K_{mu} =
+        S_{mu} = \sum_{i=1}^{35} C_i * V_i + K_{zg} + K_{mu} =
         ''' + rf''' {current_sum + kmu + selected.score}  '''
     )
 
