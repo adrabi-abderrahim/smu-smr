@@ -33,5 +33,6 @@ if selected:
         ''' + rf''' {current_sum + kmu + selected.score}  '''
     )
 
+    st.latex(r'''K_{zg} =''' + rf'''{selected.score} \; (المقدار \; الثابت \; الخاص \; بكل \;  جهة).''')
     st.latex(r'''K_{mu} =''' + rf'''{kmu} \; (المقدار \;الثابت  \;الخاص  \;بالوسط \; الحضري).''')
 
